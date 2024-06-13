@@ -1,0 +1,35 @@
+		DATABASE:
+I USED MYSQL
+1. in config.json : password:"your-password" in all three places line 4,11,18 ; the password of mysql
+2. in index.js: also put password in line 8
+
+to migrate the tables to database:
+3. npx sequelize-cli migration:generate --name createtables //this creates a file in migrations folder
+							replce everything on this new file with the code on already present file and save the new file.
+4. in mysql workbench/command window: create database to_do_list;
+				   use to_do_list;
+5.npx sequelize-cli db:migrate      //this should migrate your tables to mysql 
+you can check the migration by going to the mysql workbench or cmd window and running command: show tables;
+
+The get request returns array of object.
+
+to post:
+/tasks
+body : json format:
+{
+"title":"task name",
+"status":"pending"
+}
+
+to delete:
+/tasks?taskId="2"      //where 2 is the value of task id
+body:
+not required
+
+to patch:
+/tasks?taskId="2"   //where 2 is the value of taskid
+body: json format: //it takes either title or status or both as well
+{
+"title":"task name",
+"status":"pending"
+}
