@@ -5,17 +5,17 @@ const { QueryInterface } = require("sequelize");
 module.exports = {
   up: async (queryInterface) => {
     await queryInterface.createTable('tasks', {
-      TaskId: {
+      id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      Title: {
+      title: {
         type: Sequelize.STRING,
         allowNull: false
       },
-      Status: {
+      status: {
         type: Sequelize.STRING,
         allowNull: false,
         defaultValue: "pending"

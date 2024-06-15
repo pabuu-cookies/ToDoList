@@ -4,18 +4,22 @@ const mysql = require('mysql2/promise');
 const path = require('path');
 const pool = mysql.createPool({
     host:'localhost',
-    user: 'root',
-    password:'minorProject*&^6',
-    database: 'to_do_list'
+    user: 'roshanojha',
+    password:'piedpiper',
+    database: 'todo'
 });
 
+const cors = require('cors')
+
 const app = express();
-const port = 3000;
+const port = 5000;
+
+app.use(cors())
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.get('/', async (req, res) => {
+app.get('/tasks', async (req, res) => {
     console.log('get app');
     try {
         const result = await pool.query('SELECT * FROM tasks');
@@ -70,11 +74,11 @@ app.delete('/tasks', async (req, res) => {
     }
 });
   
-app.patch('/tasks/', async (req, res) => {
+app.patch('/tasks', async (req, res) => {
     console.log('patch app');
     const  Title = req.body.title;
     const  Status = req.body.status;
-    const taskId = req.query.taskId;
+    const taskId = req.query.id;
     console.log(taskId);
 
     let query = 'UPDATE tasks SET ';
@@ -82,12 +86,12 @@ app.patch('/tasks/', async (req, res) => {
     let fields = [];
 
     if (Title) {
-        fields.push('Title = ?');
+        fields.push('title = ?');
         values.push(Title);
     }
 
     if (Status) {
-        fields.push('Status = ?');
+        fields.push('status = ?');
         values.push(Status);
     }
 
@@ -96,7 +100,7 @@ app.patch('/tasks/', async (req, res) => {
     }
 
     query += fields.join(', ');
-    query += ', UpdatedAt = NOW() WHERE TaskId = ?';
+    query += ', UpdatedAt = NOW() WHERE id = ?';
     values.push(taskId);
     console.log(query, values);
     try {

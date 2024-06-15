@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "roshanojha",
+    "password": "piedpiper",
+    "database": "todo",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "roshanojha",
+    "password": "piedpiper",
+    "database": "todo",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "roshanojha",
+    "password": "piedpiper",
+    "database": "todo",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

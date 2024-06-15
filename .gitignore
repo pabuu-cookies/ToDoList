@@ -1,3 +1,11 @@
-node_modules/
+Frontend/node_modules/
+Frontend/logs
+*.log
+Frontend/npm-debug.log*
+Frontend/yarn-debug.log*
+Frontend/yarn-error.log*
+Frontend/pnpm-debug.log*
+Frontend/lerna-debug.log*
 
-package-lock.json
+
+Backend/node_modules/
